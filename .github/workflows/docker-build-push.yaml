@@ -19,6 +19,6 @@ jobs:
         id: project_checkout
 
       - name: Docker build
-        run: docker build -t {{ secrets.DOCKER_IMAGE_NAME }}:latest .
+        run: docker build -t ${{ secrets.DOCKER_IMAGE_NAME }}:latest .
         id: docker_build
 
