@@ -1,0 +1,28 @@
+name: Docker Build Push
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build-push:
+    name: Docker build and push
+    env:
+      TAG: ${{ github.ref_name }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Project checkout
+        uses: actions/checkout@v2
+        id: project_checkout
+
+      - name: Docker build
+        run: docker build -t ${{ secrets.DOCKER_IMAGE_NAME }}:latest .
+        id: docker_build
+
+      - name: Docker tag
+        run: docker tag ${{ secrets.DOCKER_IMAGE_NAME }}:latest ${{ secrets.DOCKER_IMAGE_NAME }}:$(echo ${TAG//v})
