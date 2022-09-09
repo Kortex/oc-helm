@@ -1,6 +1,9 @@
 name: Docker Build Validate
 
-on: pull_request
+on:
+  push:
+    branches:
+      - master
 
 defaults:
   run:
@@ -12,10 +15,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Project checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         id: project_checkout
 
-      - name: Docker build
-        run: docker build -t ${{ secrets.DOCKER_IMAGE_NAME }}:latest .
-        id: docker_build
+      - name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          push: false
+          tags: ${{ secrets.DOCKER_IMAGE_NAME }}:latest
 
