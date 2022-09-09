@@ -26,6 +26,8 @@ jobs:
 
       - name: Docker tag
         run: docker tag ${{ secrets.DOCKER_IMAGE_NAME }}:latest ${{ secrets.DOCKER_IMAGE_NAME }}:$(echo ${TAG//v})
+        id: docker_tag
 
-      - name: Docker test
-        run: docker images
+      - name: Docker push
+        run: docker push ${{ secrets.DOCKER_IMAGE_NAME }}:latest ${{ secrets.DOCKER_IMAGE_NAME }}:$(echo ${TAG//v})
+        id: docker_push
