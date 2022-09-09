@@ -1,0 +1,21 @@
+name: Docker Build Validate
+
+on: pull_request
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Project checkout
+        uses: actions/checkout@v2
+        id: project_checkout
+
+      - name: Docker Build Image
+        run: docker build -t test:latest .
+        id: docker_build
+
