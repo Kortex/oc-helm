@@ -30,4 +30,4 @@ jobs:
 
       - name: Docker push
         run: docker push ${{ secrets.DOCKER_IMAGE_NAME }}:$(echo ${TAG//v})
-        id: docker_push ${{ secrets.DOCKER_IMAGE_NAME }}:$(echo ${TAG//v})
+        id: docker_push
