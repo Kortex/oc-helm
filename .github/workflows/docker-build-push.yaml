@@ -3,7 +3,7 @@ name: Docker Build Push
 on:
   push:
     tags:
-      - v*
+      - 'v*.*.*'
 
 defaults:
   run:
@@ -11,6 +11,9 @@ defaults:
 
 jobs:
   build-push:
+    env:
+      TAG: ${{ github.ref_name }}
+
     runs-on: ubuntu-latest
 
     steps:
@@ -22,3 +25,5 @@ jobs:
         run: docker build -t ${{ secrets.DOCKER_IMAGE_NAME }}:latest .
         id: docker_build
 
+      - name: Docker tag
+        run: docker tag ${{ secrets.DOCKER_IMAGE_NAME }}:latest ${{ secrets.DOCKER_IMAGE_NAME }}:latest

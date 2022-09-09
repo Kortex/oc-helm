@@ -10,6 +10,9 @@ jobs:
   validate:
     runs-on: ubuntu-latest
 
+    env:
+      TAG: ${{ github.ref_name }}
+
     steps:
       - name: Project checkout
         uses: actions/checkout@v2
@@ -18,4 +21,7 @@ jobs:
       - name: Docker build
         run: docker build -t ${{ secrets.DOCKER_IMAGE_NAME }}:latest .
         id: docker_build
+
+      - name: Docker tag
+        run: docker tag ${{ secrets.DOCKER_IMAGE_NAME }}:latest ${{ secrets.DOCKER_IMAGE_NAME }}:$(echo ${TAG//v})
 
