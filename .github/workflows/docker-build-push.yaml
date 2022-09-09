@@ -11,11 +11,10 @@ defaults:
 
 jobs:
   build-push:
+    name: Docker build and push
     env:
       TAG: ${{ github.ref_name }}
-
     runs-on: ubuntu-latest
-
     steps:
       - name: Project checkout
         uses: actions/checkout@v2
@@ -26,4 +25,4 @@ jobs:
         id: docker_build
 
       - name: Docker tag
-        run: docker tag ${{ secrets.DOCKER_IMAGE_NAME }}:latest ${{ secrets.DOCKER_IMAGE_NAME }}:latest
+        run: docker tag ${{ secrets.DOCKER_IMAGE_NAME }}:latest ${{ secrets.DOCKER_IMAGE_NAME }}:$(echo ${TAG//v})
