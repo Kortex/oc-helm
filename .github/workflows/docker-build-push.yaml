@@ -1,13 +1,16 @@
-name: Docker Build Validate
+name: Docker Build Push
 
-on: pull_request
+on:
+  push:
+    tags:
+      - v*
 
 defaults:
   run:
     shell: bash
 
 jobs:
-  validate:
+  build-push:
     runs-on: ubuntu-latest
 
     steps:
