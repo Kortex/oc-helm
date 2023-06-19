@@ -17,7 +17,6 @@ RUN ln -s $TARGET_HELM_FOLDER/helm /usr/local/bin/
 
 RUN mkdir -p ${OC_FOLDER}
 ADD $OC_CLIENT_LINK $OC_FOLDER
-RUN ls -lah $OC_FOLDER
 RUN mkdir -p $TARGET_OC_FOLDER
 RUN tar -xvf $OC_FOLDER/*.gz -C $TARGET_OC_FOLDER
 RUN ln -s $TARGET_OC_FOLDER/oc /usr/local/bin/
