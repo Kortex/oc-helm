@@ -5,10 +5,10 @@ ARG HELM_FOLDER=helm-client
 ARG USER_NAME=app
 
 ARG OC_CLIENT_LINK=https://github.com/okd-project/okd/releases/download/4.13.0-0.okd-2023-06-04-080300/openshift-client-linux-4.13.0-0.okd-2023-06-04-080300.tar.gz
-ARG HELM_CLIENT_LINK=https://get.helm.sh/helm-v3.12.0-linux-amd64.tar.gz
+ARG HELM_CLIENT_LINK=https://get.helm.sh/helm-v3.12.1-linux-amd64.tar.gz
 
 RUN apt-get update && apt-get -y upgrade
-RUN apt-get install -y wget
+RUN apt-get install -y wget ca-certificates
 
 # Install OC client
 RUN mkdir -p ${OC_FOLDER} \
