@@ -6,8 +6,8 @@ ARG TARGET_OC_FOLDER=${TARGET_OC_FOLDER:-/opt/oc}
 ARG TARGET_HELM_FOLDER=${TARGET_HELM_FOLDER:-/opt/helm}
 ARG USER_NAME=app
 
-ARG OC_CLIENT_LINK=https://github.com/okd-project/okd/releases/download/4.13.0-0.okd-2023-06-04-080300/openshift-client-linux-4.13.0-0.okd-2023-06-04-080300.tar.gz
-ARG HELM_CLIENT_LINK=https://get.helm.sh/helm-v3.12.0-linux-amd64.tar.gz
+ARG OC_CLIENT_LINK=https://github.com/okd-project/okd/releases/download/4.13.0-0.okd-2023-09-03-082426/openshift-client-linux-4.13.0-0.okd-2023-09-03-082426.tar.gz
+ARG HELM_CLIENT_LINK=https://get.helm.sh/helm-v3.12.3-linux-amd64.tar.gz
 
 RUN mkdir -p ${HELM_FOLDER}
 ADD $HELM_CLIENT_LINK $HELM_FOLDER
