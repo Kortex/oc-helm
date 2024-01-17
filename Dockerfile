@@ -5,17 +5,27 @@ ARG HELM_FOLDER=${HELM_FOLDER:-helm}
 ARG TARGET_OC_FOLDER=${TARGET_OC_FOLDER:-/opt/oc}
 ARG TARGET_HELM_FOLDER=${TARGET_HELM_FOLDER:-/opt/helm}
 ARG USER_NAME=app
+ARG OC_CLIENT_LINK=https://github.com/okd-project/okd/releases/download/4.14.0-0.okd-2024-01-06-084517/openshift-client-linux-4.14.0-0.okd-2024-01-06-084517.tar.gz
+ARG HELM_CLIENT_LINK=https://get.helm.sh/helm-v3.14.0-linux-amd64.tar.gz
+ARG BUILD_DATE=${BUILD_DATE}
 
-ARG OC_CLIENT_LINK=https://github.com/okd-project/okd/releases/download/4.13.0-0.okd-2023-09-03-082426/openshift-client-linux-4.13.0-0.okd-2023-09-03-082426.tar.gz
-ARG HELM_CLIENT_LINK=https://get.helm.sh/helm-v3.12.3-linux-amd64.tar.gz
+
+LABEL org.opencontainers.image.authors="akourt"
+LABEL org.opencontainers.image.documentation="https://github.com/Kortex/oc-helm"
+LABEL org.opencontainers.image.source="https://github.com/Kortex/oc-helm"
+LABEL org.opencontainers.image.title="oc-helm docker image"
+LABEL org.opencontainers.image.description="A docker image with oc and helm clients installed"
+LABEL org.opencontainers.image.created=${BUILD_DATE}
+
+# Update and install ca-certs
+RUN apt-get update && apt-get -y upgrade
+RUN apt-get install -y wget ca-certificates
 
 RUN mkdir -p ${HELM_FOLDER}
 ADD $HELM_CLIENT_LINK $HELM_FOLDER
 RUN mkdir -p $TARGET_HELM_FOLDER
 RUN tar --strip-components 1 -xvf $HELM_FOLDER/*.gz -C $TARGET_HELM_FOLDER
 RUN ln -s $TARGET_HELM_FOLDER/helm /usr/local/bin/
-RUN apt-get update && apt-get -y upgrade
-RUN apt-get install -y wget ca-certificates
 
 RUN mkdir -p ${OC_FOLDER}
 ADD $OC_CLIENT_LINK $OC_FOLDER
