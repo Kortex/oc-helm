@@ -8,7 +8,13 @@ but also be able to perform actions using the`oc` client.
 
 ## Usage
 
+Pull the image using the following command:
+
 `docker pull ariskourt/oc-helm:<tag>`
+
+Run the image using the following command:
+
+`docker run -it --rm ariskourt/oc-helm:1.0.6 oc version` (example usage)
 
 ## Software versions
 
