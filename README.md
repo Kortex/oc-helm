@@ -8,9 +8,11 @@ but also be able to perform actions using the`oc` client.
 
 ## Usage
 
+`docker pull ariskourt/oc-helm:<tag>`
+
 ## Software versions
 
 | Software | Version  |
 |----------|----------|
-| Helm     | 3.14.0   |
-| oc       | 4.14.0-0 |
+| Helm     | 3.14.4   |
+| oc cli   | 4.15.0-0 |
