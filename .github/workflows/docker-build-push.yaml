@@ -38,7 +38,7 @@ jobs:
           context: .
           push: true
           tags: ${{ env.IMAGE_TAG }}
-          sbom: true
-          provenance: true
+          #sbom: true
+          #provenance: true
           build-args: |
             BUILD_DATE=${{ env.BUILD_DATE }}
