@@ -4,9 +4,8 @@ ARG OC_FOLDER=${OC_FOLDER:-oc}
 ARG HELM_FOLDER=${HELM_FOLDER:-helm}
 ARG TARGET_OC_FOLDER=${TARGET_OC_FOLDER:-/opt/oc}
 ARG TARGET_HELM_FOLDER=${TARGET_HELM_FOLDER:-/opt/helm}
-ARG USER_NAME=app
-ARG OC_CLIENT_LINK=https://github.com/okd-project/okd/releases/download/4.15.0-0.okd-2024-03-10-010116/openshift-client-linux-4.15.0-0.okd-2024-03-10-010116.tar.gz
-ARG HELM_CLIENT_LINK=https://get.helm.sh/helm-v3.14.4-linux-amd64.tar.gz
+ARG OC_CLIENT_LINK=https://github.com/okd-project/okd/releases/download/4.19.0-okd-scos.ec.10/openshift-client-linux-4.19.0-okd-scos.ec.10.tar.gz
+ARG HELM_CLIENT_LINK=https://get.helm.sh/helm-v3.17.3-linux-amd64.tar.gz
 ARG BUILD_DATE=${BUILD_DATE}
 
 
@@ -36,9 +35,5 @@ RUN ln -s $TARGET_OC_FOLDER/kubectl /usr/local/bin/
 
 # Cleanup directories
 RUN rm -rf ${OC_FOLDER} ${HELM_FOLDER}
-
-# Create a non-root user
-RUN useradd -rm -d /home/${USER_NAME} -s /bin/bash -u 1001 ${USER_NAME}
-USER ${USER_NAME}
 
 CMD [ "bash" ]

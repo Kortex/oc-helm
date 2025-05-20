@@ -18,7 +18,11 @@ Run the image using the following command:
 
 ## Software versions
 
-| Software | Version  |
-|----------|----------|
-| Helm     | 3.14.4   |
-| oc cli   | 4.15.0-0 |
+| Software | Version |
+|----------|---------|
+| Helm     | 3.17.3  |
+| oc cli   | 4.19.0  |
+
+## Misc
+
+Note that this container runs as a `root` user. This is done to allow various tools to run without permission issues.
